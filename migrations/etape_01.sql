@@ -12,4 +12,3 @@ SELECT  nom,
         prix 
     FROM Plat 
     ORDER BY PRIX DESC 
-

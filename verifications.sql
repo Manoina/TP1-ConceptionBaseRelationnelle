@@ -1,4 +1,4 @@
--- STEP 1: LA CARTE MENU 
+-- STEP 1: LA CARTE MENU
 INSERT INTO Plat(nom, prix) VALUES
     ('Romazava', 7000),
     ('Ravitoto sy Henakisoa', 8000),
