@@ -1,10 +1,13 @@
--- STEP 1: LA CARTE MENU
-INSERT INTO Plat(nom, prix) VALUES
-    ('Romazava', 7000),
-    ('Ravitoto sy Henakisoa', 8000),
-    ('Akoho sy voanio', 8500),
-    ('Mine Sao', 6000),
-    ('Soupe Chinoise', 5000),
-    ('Mofo Gasy (les 4)', 1000),
-    ('Ranon''ampango', 500)
-;
+        -- STEP 1: LA CARTE MENU
+-- FUNCTION FOR DISPLAYING DISH BY PRICE
+SELECT  nom,
+        prix 
+    FROM Plat 
+    ORDER BY PRIX DESC 
+
+        -- STEP 2: LES CATEGORIES:
+SELECT Categorie.libelle AS Categorie, count(Plat.nom) AS NbrPlat_par_Categorie
+    FROM Plat
+    LEFT JOIN Categorie
+        ON Plat.categorie_id = Categorie.id
+    GROUP BY Categorie.libelle

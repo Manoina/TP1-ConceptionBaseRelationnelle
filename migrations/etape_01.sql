@@ -7,8 +7,12 @@ CREATE TABLE Plat(
     prix INT NOT NULL
 );
 
--- FUNCTION FOR DISPLAYING DISH BY PRICE
-SELECT  nom,
-        prix 
-    FROM Plat 
-    ORDER BY PRIX DESC 
+INSERT INTO Plat(nom, prix) VALUES
+    ('Romazava', 7000),
+    ('Ravitoto sy Henakisoa', 8000),
+    ('Akoho sy voanio', 8500),
+    ('Mine Sao', 6000),
+    ('Soupe Chinoise', 5000),
+    ('Mofo Gasy (les 4)', 1000),
+    ('Ranon''ampango', 500)
+;
