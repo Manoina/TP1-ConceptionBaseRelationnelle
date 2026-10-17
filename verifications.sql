@@ -5,9 +5,33 @@ SELECT  nom,
     FROM Plat 
     ORDER BY PRIX DESC 
 
-        -- STEP 2: LES CATEGORIES:
+        -- STEP 2: LES CATEGORIES
 SELECT Categorie.libelle AS Categorie, count(Plat.nom) AS NbrPlat_par_Categorie
     FROM Plat
     LEFT JOIN Categorie
         ON Plat.categorie_id = Categorie.id
     GROUP BY Categorie.libelle
+
+        -- STEP 3: LES COMMANDES
+-- Details pour chaque commande         
+SELECT Commande.nomCommande AS Commande, 
+       Plat.nom AS Plat,
+       CommandePlat.quantite AS Quantite,
+       (Plat.prix * CommandePlat.quantite) AS PrixTotal
+    FROM CommandePlat
+    JOIN Commande
+        ON CommandePlat.commande_id = Commande.id
+    JOIN Plat 
+        ON CommandePlat.plat_id = Plat.id
+    GROUP BY Commande.nomCommande, Plat.nom, CommandePlat.quantite, Plat.prix
+    ORDER BY Commande.nomCommande
+-- Somme total pour chaque commande
+SELECT Commande.nomCommande AS Commande,
+       SUM(Plat.prix * CommandePlat.quantite) AS PrixTotal
+    FROM CommandePlat
+    JOIN Commande
+        ON CommandePlat.commande_id = Commande.id
+    JOIN Plat 
+        ON CommandePlat.plat_id = Plat.id
+    GROUP BY Commande.nomCommande
+    ORDER BY Commande.nomCommande
