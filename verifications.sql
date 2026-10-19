@@ -37,9 +37,24 @@ SELECT Commande.nomCommande AS Commande,
     ORDER BY Commande.nomCommande
 
         -- STEP 4: LES HABITUES:
- SELECT Commande.nomCommande AS Commande, 
+SELECT Commande.nomCommande AS Commande, 
         COALESCE(Clientele.nom, 'Client de passage') AS Clientele 
     FROM Commande 
     LEFT JOIN Clientele 
         ON Commande.clientele_id = Clientele.id 
     ORDER BY commande         
+
+        -- STEP 5: SERVEURS & TABLES:
+SELECT  SRV.prenom AS Serveur,
+        COUNT(DISTINCT CMD.nomCommande) AS NbrCommande,
+        SUM(PLT.prix * CMDPLT.quantite) AS VenteTotale
+    FROM TableCommandeServeur AS TCS
+    JOIN Serveurs AS SRV
+        ON TCS.serveur_id = SRV.id
+    JOIN Commande AS CMD
+        ON TCS.commande_id = CMD.id
+    JOIN CommandePlat AS CMDPLT
+        ON CMD.id = CMDPLT.commande_id
+    JOIN Plat AS PLT
+        ON CMDPLT.plat_id = PLT.id
+    GROUP BY SRV.prenom

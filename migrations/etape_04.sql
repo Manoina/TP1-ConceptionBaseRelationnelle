@@ -21,9 +21,12 @@ UPDATE Commande
     SET clientele_id = 1
     WHERE id = 1;
 
+UPDATE Commande
+    SET clientele_id = 2
+    WHERE id = 4;
  
 UPDATE Commande 
     SET clientele_id = 3
     WHERE id = 3;
 
--- 
+
