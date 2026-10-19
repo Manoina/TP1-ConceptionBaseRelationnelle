@@ -64,3 +64,5 @@ table
 * _Response_: Une table contient plusieurs commandes, et une commande reçoit les différents plats pour les personnes qui commandent sur la même table.
 Le nom table pose problème en SQL peut être parce que le système pourrait le confondre avec la table dans une base de données
 
+#                           **LEVEL 2**
+## **STEP 6: **PAIMENT**
