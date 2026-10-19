@@ -35,3 +35,11 @@ SELECT Commande.nomCommande AS Commande,
         ON CommandePlat.plat_id = Plat.id
     GROUP BY Commande.nomCommande
     ORDER BY Commande.nomCommande
+
+        -- STEP 4: LES HABITUES:
+ SELECT Commande.nomCommande AS Commande, 
+        COALESCE(Clientele.nom, 'Client de passage') AS Clientele 
+    FROM Commande 
+    LEFT JOIN Clientele 
+        ON Commande.clientele_id = Clientele.id 
+    ORDER BY commande         

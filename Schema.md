@@ -29,3 +29,16 @@ Commande(**id**, nomCommande, dateCommande)
 CommandePlat(**id**, **#commande_id**, **#plat_id**, quantite)
 * _Trap_: "Où placez-vous la quantite"
 * _Response_: Je le place dans CommandePlat, parce que c'est cette table qui décrit les détails de la commande effectué
+
+## **STEP 4: ACCUSTOMED**
+* TABLE_SCHEMA
+Plat(**id**, nom, prix, #categorie_id)
+Categorie(**id**, libelle)
+Commande(**id**, nomCommande, dateCommande, #clientele_id)
+CommandePlat(**id**, **#commande_id**, **#plat_id**, quantite)
+Clientele(**id**, nom, prenom, email)
+* _Trap_: " Votre clé étrangère est-elle 
+NOT NULL
+ ? Quelle jointure faut-il pour ne perdre aucune commande ?"
+ * _Response_: La clé etrangère ne doit pas être contrainte NOT NULL parce que ce n'est pas tous les clients qui sont habitué de la gargotte, donc elle peut être vide.
+ Pour ne perdre aucune commande, il faut utiliser **LEFT JOIN** comme jointure.
