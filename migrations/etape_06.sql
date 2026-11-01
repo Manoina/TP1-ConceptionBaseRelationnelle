@@ -62,4 +62,6 @@ INSERT INTO PaiementCommande(
     (2, 2, 2, 2, 6000);
 
 UPDATE Commande
-    SET montant_paye = SUM()
+    SET montant_paye = (SELECT MontantPaye 
+                            FROM v_montantPayeByCommande
+                            WHERE v_montantPayeByCommande.commande_id = Commande.id)
