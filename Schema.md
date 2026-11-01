@@ -66,3 +66,25 @@ Le nom table pose problème en SQL peut être parce que le système pourrait le 
 
 #                           **LEVEL 2**
 ## **STEP 6: **PAIMENT**
+* TABLES_SCHEMA
+Plat(**id**, nom, prix, #categorie_id)
+Categorie(**id**, libelle)
+Commande(**id**, nomCommande, dateCommande, #clientele_id)
+CommandePlat(**id**, **#commande_id**, **#plat_id**, quantite)
+Clientele(**id**, nom, prenom, email)
+Serveurs(**id**, nom, prenom, contact)
+Tables(**id**, numero)
+TableCommandeServeur(**id**, **#commande_id**, **#table_id**, **#serveur_id**)
+Paiement(**id**, paiementID, datePaiement)
+PaiementMode(**id**, libelle)
+Operateur(**id**, libelle)
+PaiementCommande(**id**, **#paiement_id**, **#commande_id**, **#paiementMode_id**, **#operateur_id**, montant)
+
+* _Trap_: "Pourquoi une colonne **montant_payé** dans la table commande ne suffit elle pas?"
+"Le mode de paiement: contrainte **CHECK** ou table de référence?"
+
+* _Response_: Une colonne **montant_payé** ne suffiras pas pour savoir les détails de paiement effectué par le client, si par exemple, il a effectué le paiement en deux méthodes: cash, puis mobile money, on ne pourra pas savoir il a payé combien en liquide et combien en cash
+Le mode de paiement: 
+    - Ajouter une contrainte CHECK: aucune donnée n'entre tant que les données insérés sur une colonne spécifique ne sont pas identiques à celle mis dans les contraintes. Sauf que l'utilisateur doit absolument connaitre ces contraintes pour les respecter(orthographes...)
+    - Table de réference: Creation de la table **PaiementMode** qui inclut déjà les mode existantes
+    quand l'utilisateur va choisir le mode, il ne l'écrira pas à la main, et ne s'embêtera pas avec les grammaires, il a juste à cliquer sur la liste déroulante des modes de paiement possible
